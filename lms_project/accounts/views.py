@@ -12,7 +12,15 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.authtoken.models import Token
 from rest_framework.permissions import AllowAny
+from rest_framework import viewsets, filters 
 from .serializers import LoginSerializer
+from .serializers import UserSerializer
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    filter_backends = [filters.SearchFilter]
+    search_fields = ['username']  # You can also add 'email', 'first_name', etc.
 
 class RegisterView(generics.CreateAPIView):
     queryset = User.objects.all()

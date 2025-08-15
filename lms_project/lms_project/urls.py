@@ -5,6 +5,12 @@ from django.urls import path, include
 
 from accounts.views import RegisterView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
+from rest_framework.routers import DefaultRouter
+from accounts.views import UserViewSet
+
+
+router = DefaultRouter()
+router.register(r'users', UserViewSet)
 
 urlpatterns = [
     path('admin/', admin.site.urls),
